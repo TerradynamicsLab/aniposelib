@@ -608,11 +608,13 @@ class CharucoBoard(CalibrationObject):
             gray = image
 
         params = aruco.DetectorParameters_create()
-        params.cornerRefinementMethod = aruco.CORNER_REFINE_CONTOUR
-        params.adaptiveThreshWinSizeMin = 100
-        params.adaptiveThreshWinSizeMax = 700
-        params.adaptiveThreshWinSizeStep = 50
-        params.adaptiveThreshConstant = 0
+        #params.cornerRefinementMethod = aruco.CORNER_REFINE_CONTOUR
+        #params.adaptiveThreshWinSizeMin = 100
+        #params.adaptiveThreshWinSizeMax = 700
+        #params.adaptiveThreshWinSizeStep = 50
+        #params.adaptiveThreshConstant = 0
+        params.cornerRefinementMethod = cv2.aruco.CORNER_REFINE_APRILTAG
+        params.adaptiveThreshConstant = 14 # note: starts improving marker detect around 14-42,
 
         try:
             corners, ids, rejectedImgPoints = aruco.detectMarkers(
